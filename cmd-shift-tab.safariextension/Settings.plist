@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<array>
+	<dict>
+		<key>DefaultValue</key>
+		<string>⌘⇧T</string>
+		<key>Key</key>
+		<string>shortcut</string>
+		<key>Title</key>
+		<string>Keyboard Shortcut</string>
+		<key>Type</key>
+		<string>TextField</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>reset</string>
+		<key>Title</key>
+		<string>Reset on Relaunch</string>
+		<key>Type</key>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>memory</string>
+		<key>Key</key>
+		<string>storage</string>
+		<key>Secure</key>
+		<false/>
+		<key>Title</key>
+		<string>Storage</string>
+		<key>Titles</key>
+		<array>
+			<string>Per Session</string>
+			<string>Persistent</string>
+		</array>
+		<key>Type</key>
+		<string>RadioButtons</string>
+		<key>Values</key>
+		<array>
+			<string>memory</string>
+			<string>persistent</string>
+		</array>
+	</dict>
+	<dict>
+		<key>Type</key>
+		<string>Separator</string>
+	</dict>
+</array>
+</plist>
