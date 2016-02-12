@@ -7,9 +7,9 @@
 	<key>Builder Version</key>
 	<string>11601.4.4</string>
 	<key>CFBundleDisplayName</key>
-	<string>cmd-shift-tab</string>
+	<string>cmd-shift-t</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.camlittle.cmd-shift-tab</string>
+	<string>com.camlittle.cmd-shift-t</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>

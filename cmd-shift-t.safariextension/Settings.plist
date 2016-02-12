@@ -24,7 +24,7 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>memory</string>
+		<string>persistent</string>
 		<key>Key</key>
 		<string>storage</string>
 		<key>Secure</key>
