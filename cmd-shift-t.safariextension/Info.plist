@@ -9,7 +9,7 @@
 	<key>CFBundleDisplayName</key>
 	<string>cmd-shift-t</string>
 	<key>CFBundleIdentifier</key>
-	<string>com.camlittle.cmd-shift-t</string>
+	<string>com.camlittle.safari.cmd-shift-t</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleShortVersionString</key>
@@ -36,7 +36,7 @@
 	<key>Description</key>
 	<string>Tab Close History</string>
 	<key>DeveloperIdentifier</key>
-	<string>0000000000</string>
+	<string>6D9DLTQJSN</string>
 	<key>ExtensionInfoDictionaryVersion</key>
 	<string>1.0</string>
 	<key>Permissions</key>
@@ -49,5 +49,7 @@
 			<string>All</string>
 		</dict>
 	</dict>
+	<key>Website</key>
+	<string>https://github.com/apexskier/cmd-shift-t-safari</string>
 </dict>
 </plist>
