@@ -29,8 +29,8 @@ don't expect anything brilliant.
 
 ## Building
 
-Install dev tools [jq](https://stedolan.github.io/jq/) and
-[xar](https://stedolan.github.io/jq/).
+Install dev tools [jq](https://stedolan.github.io/jq/),
+[xar](https://stedolan.github.io/jq/) and eslint.
 
 ```sh
 brew install jq xar
