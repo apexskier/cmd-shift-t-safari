@@ -6,7 +6,7 @@
   "scripts": {
     "build": "scripts/build.sh",
     "test": "echo \"no tests\" && exit 0",
-    "preversion": "npm run build",
+    "preversion": "npm run build && ! test -z \"$PUBLISH_URI\"",
     "version": "scripts/update.sh && git add -A .",
     "postversion": "scripts/publish.sh"
   },
