@@ -13,7 +13,6 @@
 
 gitdir=$(pwd)/$(git rev-parse --show-cdup)
 certdir="${gitdir}./certs/"
-echo $certdir
 
 xar=xar-mackyle
 
@@ -22,21 +21,20 @@ xar=xar-mackyle
 
 [ -n "$XARCMD" ] && xar="$XARCMD"
 
-if [ $# == 0 ] ; then
-    echo "Usage: $0 path/to/name.safariextension/"
-    exit 1
+if [ $# == 1 ] ; then
+    # Resolve relative paths, get rid of trailing slashes, validate path
+    safariextensiondir=$1
 fi
-# Resolve relative paths, get rid of trailing slashes, validate path
-safariextensiondir="$( readlink -f "$1" )"
 
 if [ -z "${safariextensiondir}" ] ; then
-    echo "Error: Path not found: ${safariextensiondir}"
-    exit 2
+    safariextensiondir="${gitdir}./cmd-shift-t.safariextension"
 fi
+
+safariextensiondir="$( readlink -f "$safariextensiondir" )"
 
 if [ ! -d "${safariextensiondir}" ] ; then
     echo "Error: Path is not a directory: ${safariextensiondir}"
-    exit 3
+    exit 2
 fi
 
 # Last part of dir, eg. "name.safariextension"
@@ -48,13 +46,13 @@ safaridistdir="${safariextensiondir%/*}"
 
 if [ "${extensionname}" == "${safaridirname}" ] ; then
     echo "Error: ${safaridirname} does not end with .safariextension!"
-    exit 4
+    exit 3
 fi
 
 # Check if all certificate requirements are satisfied...
 if [ ! -d "${certdir}" ] ; then
     echo "Error: Certificate dir not found: ${certdir}"
-    exit 5
+    exit 4
 fi
 cert_exists() {
     local cert=$1
