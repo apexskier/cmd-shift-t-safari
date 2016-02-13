@@ -8,7 +8,7 @@
     "test": "echo \"no tests\" && exit 0",
     "preversion": "npm run build",
     "version": "scripts/update.sh && git add -A .",
-    "postversion": ""
+    "postversion": "scripts/publish.sh"
   },
   "repository": {
     "type": "git",
