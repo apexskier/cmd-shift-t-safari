@@ -14,16 +14,6 @@
 	</dict>
 	<dict>
 		<key>DefaultValue</key>
-		<string>false</string>
-		<key>Key</key>
-		<string>reset</string>
-		<key>Title</key>
-		<string>Reset on Relaunch</string>
-		<key>Type</key>
-		<string>CheckBox</string>
-	</dict>
-	<dict>
-		<key>DefaultValue</key>
 		<string>persistent</string>
 		<key>Key</key>
 		<string>storage</string>
@@ -45,8 +35,24 @@
 		</array>
 	</dict>
 	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>reopenEmptyTabs</string>
+		<key>Title</key>
+		<string>Reopen Empty Tabs</string>
 		<key>Type</key>
-		<string>Separator</string>
+		<string>CheckBox</string>
+	</dict>
+	<dict>
+		<key>DefaultValue</key>
+		<string>false</string>
+		<key>Key</key>
+		<string>reset</string>
+		<key>Title</key>
+		<string>Reset on next relaunch</string>
+		<key>Type</key>
+		<string>CheckBox</string>
 	</dict>
 </array>
 </plist>
