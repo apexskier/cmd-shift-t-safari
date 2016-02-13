@@ -5,7 +5,7 @@
 GITDIR=$(pwd)/$(git rev-parse --show-cdup)
 
 VERSION=$(jq -r < "${GITDIR}./package.json" .version)
-
+FILE="http://camlittle.com/files/cmd-shift-t_${VERSION}.safariextz"
 
 INFO_FILE=${GITDIR}./cmd-shift-t.safariextension/Info.plist
 plutil -convert json $INFO_FILE
@@ -22,7 +22,9 @@ plutil -convert json $UPDATE_FILE
 
 JQFILTER=".\"Extension Updates\"[0].CFBundleVersion = \"${VERSION}\""
 JQFILTER="$JQFILTER | .\"Extension Updates\"[0].CFBundleShortVersionString = \"${VERSION}\""
-JQFILTER="$JQFILTER | .\"Extension Updates\"[0].URL = \"http://camlittle.com/files/cmd-shift-t_${VERSION}.safariextz\""
+JQFILTER="$JQFILTER | .\"Extension Updates\"[0].URL = \"${FILE}\""
 jq "$JQFILTER" < "$UPDATE_FILE" | sponge "$UPDATE_FILE"
 
 plutil -convert xml1 "$UPDATE_FILE"
+
+sed -i "s|^\[Download\].*$|[Download](${FILE})|g" "${GITDIR}./README.md"

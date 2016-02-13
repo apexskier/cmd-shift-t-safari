@@ -4,8 +4,11 @@
   "description": "Safari extension to reopen tabs",
   "main": "''",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "version": "update.sh && git add -A ."
+    "build": "scripts/build.sh",
+    "test": "echo \"no tests\" && exit 0",
+    "preversion": "npm run build",
+    "version": "scripts/update.sh && git add -A .",
+    "postversion": ""
   },
   "repository": {
     "type": "git",
