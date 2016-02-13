@@ -20,18 +20,24 @@ content is loaded. This means it won't work from the new tab page, or if your
 internet connection is down. For a similar reason, this extension requires
 global page access 😒.
 
+Across extension and application restart, browser windows are not persisted.
+When reopening multiple tabs, they will be grouped appropriately, but not
+inserted into existing windows.
+
 This is a quick project to play with Apple's Safari Extensions framework, so
 don't expect anything brilliant.
 
 ## Building
 
-Install dev tools [jq](https://stedolan.github.io/jq/) and [xar](https://stedolan.github.io/jq/).
+Install dev tools [jq](https://stedolan.github.io/jq/) and
+[xar](https://stedolan.github.io/jq/).
 
 ```sh
 brew install jq xar
 npm install
 ```
 
-Set up your certificates directory (`certs`) as described in [Rob Wu's instructions](https://github.com/Rob--W/extension-dev-tools/tree/master/safari#building-automated-linuxmac).
+Set up your certificates directory (`certs`) as described in [Rob Wu's
+instructions](https://github.com/Rob--W/extension-dev-tools/tree/master/safari#building-automated-linuxmac).
 
 `npm run build`
