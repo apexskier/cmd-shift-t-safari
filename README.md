@@ -22,3 +22,16 @@ global page access 😒.
 
 This is a quick project to play with Apple's Safari Extensions framework, so
 don't expect anything brilliant.
+
+## Building
+
+Install dev tools [jq](https://stedolan.github.io/jq/) and [xar](https://stedolan.github.io/jq/).
+
+```sh
+brew install jq xar
+npm install
+```
+
+Set up your certificates directory (`certs`) as described in [Rob Wu's instructions](https://github.com/Rob--W/extension-dev-tools/tree/master/safari#building-automated-linuxmac).
+
+`npm run build`
