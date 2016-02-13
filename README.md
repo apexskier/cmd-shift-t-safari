@@ -13,6 +13,7 @@ Tiny Safari extension that implements tab close history, inspired by Chrome's.
 - ✅ Private browsing ignored
 - ✅ Toolbar button
 - ✅ Automatic Updates
+
 ## Caveats
 
 Due to Safari limitations, keyboard shortcut only works when a website's page
@@ -26,6 +27,8 @@ inserted into existing windows.
 
 This is a quick project to play with Apple's Safari Extensions framework, so
 don't expect anything brilliant.
+
+Also, the default keyboard shortcut does interfere with the Show/Hide Tab Bar.
 
 ## Building
 
