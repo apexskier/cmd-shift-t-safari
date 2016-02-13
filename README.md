@@ -2,7 +2,7 @@
 
 Tiny Safari extension that implements tab close history, inspired by Chrome's.
 
-[Download](http://camlittle.com/files/cmd-shift-t_1.0.0.safariextz)
+[Download](http://camlittle.com/files/cmd-shift-t_1.0.1.safariextz)
 
 ## Features
 
