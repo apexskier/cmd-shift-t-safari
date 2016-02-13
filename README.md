@@ -18,5 +18,5 @@ content is loaded. This means it won't work from the new tab page, or if your
 internet connection is down. For a similar reason, this extension requires
 global page access 😒.
 
-This is a quick (3 hour) project to play with Apple's Safari Extensions
-framework, so don't expect anything brilliant.
+This is a quick project to play with Apple's Safari Extensions framework, so
+don't expect anything brilliant.
