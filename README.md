@@ -4,12 +4,11 @@ Tiny Safari extension that implements tab close history, inspired by Chrome's.
 
 ## Features
 
-- ✅ Persistant storage
+- ✅ Tab position support
+- ✅ Multi window support
+- ✅ Persistent storage (after quit)
 - ✅ 1000 tab history
-- ✅ Tab vs Window support
-- ✅ Specific window support
-- ✅ Tab position remembering
-- 💬 Private browsing testing
+- ✅ Private browsing ignored
 - ❔ Button
 
 ## Caveats

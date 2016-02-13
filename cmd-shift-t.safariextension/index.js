@@ -75,7 +75,8 @@
                 }
             }
 
-            if (safari.extension.settings.reset) {
+            var reset = JSON.parse(safari.extension.settings.reset);
+            if (reset) {
                 obj.reset();
                 safari.extension.settings.reset = false;
             }
@@ -83,7 +84,7 @@
             return obj;
         })();
     }
-    
+
     var windows = {};
 
     window.obj = history;
@@ -93,6 +94,7 @@
         var tab = e.target;
         // no tracking private windows, untested...
         if (tab.private) return;
+        if (!tab.url) return;
 
         // don't overflow
         if (history.length >= maxHistory) history.shift();
@@ -144,8 +146,7 @@
                 && (msg.altKey || false) === (shortcut.indexOf('⌥') >= 0)
                 && shortcut.indexOf(String.fromCharCode(msg.keyCode).toUpperCase()) >= 0) {
                 var tab = history.pop();
-                var reopenEmptyTabs = safari.extension.settings.reopenEmptyTabs;
-                if (tab && (tab.url || reopenEmptyTabs)) {
+                if (tab) {
                     var win, newTab;
                     if (windows.hasOwnProperty(tab.win)) {
                         win = windows[tab.win];
