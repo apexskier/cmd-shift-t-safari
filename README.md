@@ -30,7 +30,7 @@ don't expect anything brilliant.
 ## Building
 
 Install dev tools [jq](https://stedolan.github.io/jq/),
-[xar](https://stedolan.github.io/jq/) and eslint.
+[xar](http://mackyle.github.io/xar/) and [eslint](http://eslint.org).
 
 ```sh
 brew install jq xar
