@@ -1,17 +1,18 @@
+/* global safari, SafariBrowserTab */
 (function() {
     // Maybe to be used when I've got a settings page
-    //document.getElementById('shortcut').addEventListener('keydown', function(e) {
-    //    var shortcut = '';
-    //    if (e.metaKey) shortcut += '⌘';
-    //    if (e.altKey) shortcut += '⌥';
-    //    if (e.ctlKey) shortcut += '^';
-    //    if (e.shiftKey) shortcut += '⇧';
-    //    // don't add modifier keys as text
-    //    if ([16, 17, 18, 91, 93].indexOf(e.keyCode) < 0) {
-    //        shortcut += String.fromCharCode(e.keyCode).toUpperCase();
-    //    }
-    //    e.target.value = shortcut;
-    //});
+    // document.getElementById('shortcut').addEventListener('keydown', function(e) {
+    //     var shortcut = '';
+    //     if (e.metaKey) shortcut += '⌘';
+    //     if (e.altKey) shortcut += '⌥';
+    //     if (e.ctlKey) shortcut += '^';
+    //     if (e.shiftKey) shortcut += '⇧';
+    //     // don't add modifier keys as text
+    //     if ([16, 17, 18, 91, 93].indexOf(e.keyCode) < 0) {
+    //         shortcut += String.fromCharCode(e.keyCode).toUpperCase();
+    //     }
+    //     e.target.value = shortcut;
+    // });
 
     // Not using settings obj because I'll need to adjust my history
     // traversal if it changes.
@@ -73,7 +74,7 @@
                 set end(v) {
                     localStorage.setItem('end', v);
                 }
-            }
+            };
 
             var reset = JSON.parse(safari.extension.settings.reset);
             if (reset) {
@@ -90,32 +91,27 @@
     window.obj = history;
 
     safari.application.addEventListener('close', function(e) {
-        console.log(e);
-        var tab = e.target;
-        // no tracking private windows, untested...
-        if (tab.private) return;
-        if (!tab.url) return;
-
-        // don't overflow
-        if (history.length >= maxHistory) history.shift();
-
+        var tab = e.target,
         // !isTab <=> tab instanceof SafariBrowserWindow
-        var isTab = tab instanceof SafariBrowserTab;
+            isTab = tab instanceof SafariBrowserTab,
+            win, search;
         // closing a window emits two events: first the tab, then the window
         // we'll mark the tab as a window, because the second event doesn't
         // have a url.
         if (!isTab) {
-            var win = tab;
-            var search = Object.keys(windows).map(function(key) {
+            win = tab;
+            search = Object.keys(windows).map(function(key) {
                 return [key, windows[key]];
             }).filter(function(v) {
                 return win === v[1];
             });
             if (search.length) delete windows[search[0][0]];
         } else {
-            var id,
-                win = tab.browserWindow;
-            var search = Object.keys(windows).map(function(key) {
+            if (tab.private) return;
+            if (!tab.url) return;
+            var id;
+            win = tab.browserWindow;
+            search = Object.keys(windows).map(function(key) {
                 return [key, windows[key]];
             }).filter(function(v) {
                 return win === v[1];
@@ -125,6 +121,7 @@
                 id = guid();
                 windows[id] = win;
             }
+            if (history.length >= maxHistory) history.shift(); // don't overflow
             history.push({
                 url: tab.url,
                 tab: isTab,
@@ -140,28 +137,54 @@
         if (e.name === 'openlast') {
             var shortcut = safari.extension.settings.shortcut.toUpperCase(),
                 msg = e.message;
-            if ((msg.metaKey || false) === (shortcut.indexOf('⌘') >= 0)
-                && (msg.shiftKey || false) === (shortcut.indexOf('⇧') >= 0)
-                && (msg.ctlKey || false) === (shortcut.indexOf('^') >= 0)
-                && (msg.altKey || false) === (shortcut.indexOf('⌥') >= 0)
-                && shortcut.indexOf(String.fromCharCode(msg.keyCode).toUpperCase()) >= 0) {
-                var tab = history.pop();
-                if (tab) {
-                    var win, newTab;
-                    if (windows.hasOwnProperty(tab.win)) {
-                        win = windows[tab.win];
-                        newTab = win.openTab('foreground', tab.index);
-                    } else {
-                        win = safari.application.openBrowserWindow();
-                        windows[tab.win] = win;
-                        newTab = win.activeTab;
-                    }
-                    win.activate();
-                    if (tab.url) newTab.url = tab.url;
-                }
+            if ((msg.metaKey || false) === (shortcut.indexOf('⌘') >= 0) &&
+                (msg.shiftKey || false) === (shortcut.indexOf('⇧') >= 0) &&
+                (msg.ctlKey || false) === (shortcut.indexOf('^') >= 0) &&
+                (msg.altKey || false) === (shortcut.indexOf('⌥') >= 0) &&
+                shortcut.indexOf(String.fromCharCode(msg.keyCode).toUpperCase()) >= 0) {
+                reopen(e);
             }
         }
     }, false);
+
+    safari.application.addEventListener('command', function(e) {
+        if (e.command === 'buttonClick') reopen(e);
+    }, false);
+
+    safari.application.addEventListener('validate', validateButton, false);
+
+    function reopen(e) {
+        var tab = history.pop();
+        if (tab) {
+            var win, newTab;
+            if (windows.hasOwnProperty(tab.win)) {
+                win = windows[tab.win];
+                newTab = win.openTab('foreground', tab.index);
+            } else {
+                win = safari.application.openBrowserWindow();
+                windows[tab.win] = win;
+                newTab = win.activeTab;
+            }
+            win.activate();
+            if (tab.url) newTab.url = tab.url;
+        }
+        // validateButton(e);
+    }
+
+    function validateButton(e) {
+        var disabled = history.length === 0;
+        if (e.type === 'command') {
+            e.target.disabled = disabled;
+        } else if (e.type === 'validate') {
+            e.target.disabled = disabled;
+        } else {
+            safari.extension.toolbarItems.forEach(function(button) {
+                if (button.identifier === 'reopenLastTab') {
+                    button.disabled = disabled;
+                }
+            });
+        }
+    }
 })();
 
 function guid() {
