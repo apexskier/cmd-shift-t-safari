@@ -12,7 +12,7 @@ Tiny Safari extension that implements tab close history, inspired by Chrome's.
 - ✅ 1000 tab history
 - ✅ Private browsing ignored
 - ✅ Toolbar button
-
+- ✅ Automatic Updates
 ## Caveats
 
 Due to Safari limitations, keyboard shortcut only works when a website's page
