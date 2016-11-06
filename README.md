@@ -1,3 +1,5 @@
+# DEPRECATED. Safari 10 now supports tab close history!
+
 # ⌘⇧T
 
 Tiny Safari extension that implements tab close history, inspired by Chrome's.
